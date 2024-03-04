@@ -20,12 +20,13 @@ function TextInput({
   return (
     <div>
       <label>{label}</label>
+      <br />
       <input
+        className="form-input"
         {...register(name, { required: true })}
         disabled={disabled}
-        style={{ borderColor: error ? "red" : "" }}
       />
-      {errors[name] && <span>Toto pole je povinné</span>}
+      {errors[name] && <div className="err-msg">Toto pole je povinné</div>}
       {error && <span>{error}</span>}
     </div>
   );

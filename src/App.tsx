@@ -1,21 +1,15 @@
 import React from "react";
-import TextInput from "./components/TextInput";
-import ComboBox from "./components/ComboBox";
+import FormComp from "./components/FormComp";
 
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <TextInput label="Jméno" name="name" register={() => {}} errors={{}} />
-      <div>
-        <ComboBox
-          label="Univerzita"
-          name="university"
-          register={() => {}}
-          errors={{}}
-        />
+      <h1>Registr studentů</h1>
+
+      <div className="form-container">
+        <FormComp />
       </div>
     </div>
   );
