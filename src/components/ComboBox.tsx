@@ -9,6 +9,7 @@ type ComboBoxProps = {
   errors: any;
   disabled?: boolean;
   error?: string;
+  required?: boolean;
 };
 
 type University = {
@@ -21,7 +22,6 @@ function ComboBox({
   register,
   disabled,
 }: ComboBoxProps): JSX.Element {
-  //fetch data from api http://universities.hipolabs.com/search?country=Czech+Republic&name=[name]
   const [universities, setUniversities] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [search, setSearch] = React.useState("");
@@ -40,19 +40,20 @@ function ComboBox({
 
   return (
     <div>
-      {/* create combo box to show universities after click on the input */}
       <label>{label}</label>
+      <br />
       <input
-        {...register(name, { required: true })}
-        disabled={disabled}
-        onClick={() => setSearch("")}
-        onChange={(e) => setSearch(e.target.value)}
+        className="form-input"
         list="universities"
+        name={name}
+        onChange={(e) => setSearch(e.target.value)}
+        disabled={disabled}
+        {...register(name)}
       />
-
       <datalist id="universities">
-        {universities.map((university: University, index: number) => (
-          <option key={index} value={university.name} />
+        {loading && <option value="Načítám..." />}
+        {universities.map((university: University) => (
+          <option key={university.name} value={university.name} />
         ))}
       </datalist>
     </div>
